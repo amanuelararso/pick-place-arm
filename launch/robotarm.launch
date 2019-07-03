@@ -1,0 +1,16 @@
+<launch>
+        <node name="ik_solver_server" pkg="thesisproject" type="IK_server.py" output="screen"/>
+        <node name="home" pkg="thesisproject" type="home.py" output="screen"/>
+        <node name="control" pkg="thesisproject" type="control.py" output="screen"/>
+        <node name="s_cylinder" pkg="thesisproject" type="s_cylinder.py" output="screen"/>
+        <node name="e_cylinder" pkg="thesisproject" type="e_cylinder.py" output="screen"/>
+        <node name="pick" pkg="thesisproject" type="pick.py" output="screen"/>
+        <node name="water" pkg="thesisproject" type="water.py" output="screen"/>
+        <node name="place" pkg="thesisproject" type="place.py" output="screen"/>
+
+</launch>
+
+
+
+
+

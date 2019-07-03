@@ -4,6 +4,7 @@ import rospy
 from std_msgs.msg import String, Float32, Int32
 from thesisproject.srv import IK
 from time import sleep
+import sys
 
 def go_to_cylinder(msg):
    	
@@ -27,11 +28,12 @@ def go_to_cylinder(msg):
 		 # waiting it to execute and finish 
 		pub_done.publish('S_Cylinder_Done')
 		#pub_done.unregister()
-		sleep(25)
+		sleep(3)
+		rospy.signal_shutdown("shutdown")
 
 if __name__=="__main__":
 	
-	rospy.init_node('s_cylinder')
+	rospy.init_node('s_cylinder', disable_signals=True)
 	rate=rospy.Rate(2)
 
 	pub_theta1 = rospy.Publisher('theta1', Float32, queue_size=1)

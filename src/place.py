@@ -3,16 +3,18 @@
 import rospy
 from std_msgs.msg import String, Int32
 from time import sleep
+import sys
 
 def go_place(msg):
 	if msg.data=='Place':
 		pub_gripper.publish('place')	
 		sleep(2)	
 		pub_done.publish('Place_Done')
-		sleep(25)
+		sleep(3)
+		rospy.signal_shutdown("shutdown")
 
 if __name__=="__main__":
-	rospy.init_node('place')
+	rospy.init_node('place', disable_signals=True)
 	rate=rospy.Rate(2)
 
 	pub_done=rospy.Publisher('currently', String, queue_size=1)

@@ -3,6 +3,7 @@
 import rospy
 from std_msgs.msg import String, Float32
 from time import sleep
+import sys
 
 def command(msg):
 
@@ -10,6 +11,7 @@ def command(msg):
 		while msg.data=='Home_Done':
 		 	print 'The Robot is in Home Position' 
 			sleep(2)
+			rospy.signal_shutdown("shutdown")
 		sleep(1000)
 			
 	elif msg.data=='S_Cylinder_Done':
@@ -38,16 +40,17 @@ def command(msg):
 			sleep(10)
 
 if __name__=="__main__":
-	rospy.init_node('contol')
+	rospy.init_node('contol', disable_signals=True)
 	rate=rospy.Rate(2)
 
 	pub=rospy.Publisher('goal', String, queue_size=1)
 	pub_theta1 = rospy.Publisher('theta1', Float32, queue_size=1)
 	pub_theta2 = rospy.Publisher('theta2', Float32, queue_size=1)
 	pub_gripper = rospy.Publisher('grip', String, queue_size=1)
+	
 
 	pub_theta1.publish(0.0)
-	pub_theta2.publish(150.0)
+	pub_theta2.publish(170.0)
 	pub_gripper.publish('open')
 	start=raw_input('Enter start to start the robot: ')
 	if start=='start':

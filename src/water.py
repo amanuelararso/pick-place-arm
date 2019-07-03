@@ -4,6 +4,7 @@ import rospy
 from std_msgs.msg import String, Float32, Int32
 from time import sleep
 from thesisproject.srv import IK
+import sys
 
 def go_to_water(msg):
 	# cylinder position
@@ -22,10 +23,11 @@ def go_to_water(msg):
 		sleep(5) # 2 sec for execution and 3 sec for staying at this position 		
 		pub_done.publish('Water_Done')
 		#pub_done.unregister()
-		sleep(25)
+		sleep(3)
+		rospy.signal_shutdown("shutdown")
 
 if __name__=="__main__":
-	rospy.init_node('water')
+	rospy.init_node('water', disable_signals=True)
 	rate=rospy.Rate(2)
 	pub_theta1 = rospy.Publisher('theta1', Float32, queue_size=1)
 	pub_theta2 = rospy.Publisher('theta2', Float32, queue_size=1)

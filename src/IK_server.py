@@ -6,10 +6,10 @@ from thesisproject.srv import IK
 
 
 #this is a server for ik solving
-#the idea is that it will be called as a node wants
+#this node is called as a node wants an inverse kinematics
 def ik_solver(req):
 	T1=T2=0.0
-	a1=26.4
+	a1=26.4 
 	a2=23.8
 
 	T1=math.degrees(math.atan(req.y0_2/req.x0_2))

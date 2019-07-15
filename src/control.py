@@ -12,7 +12,7 @@ def command(msg):
 		 	print 'The Robot is in Home Position' 
 			sleep(2)
 			rospy.signal_shutdown("shutdown")
-		sleep(1000)
+		
 			
 	elif msg.data=='S_Cylinder_Done':
 		while msg.data=='S_Cylinder_Done':
